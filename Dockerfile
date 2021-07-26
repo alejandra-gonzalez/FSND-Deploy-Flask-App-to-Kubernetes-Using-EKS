@@ -1,8 +1,7 @@
 FROM python:stretch
-
+COPY . /app
 WORKDIR /app
-
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-
-ENTRYPOINT ["gunicorn", "-b", ":8080", "main:APP"]
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
+EXPOSE 8080
+ENTRYPOINT ["gunicorn", "-b", "0.0.0.0:8080", "main:APP"]
